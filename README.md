@@ -9,7 +9,7 @@ This repository demonstrates **context offloading**, a powerful context engineer
 
 When building AI agents, you'll hit a fundamental problem: **context rot**.
 
-Research by Chroma shows that information buried in the middle of long context windows loses 30%+ accuracy. As conversations grow longer, your AI "forgets" earlier details, makes mistakes, and contradicts itself.
+Research by Chroma shows that information buried in the middle of long context windows significantly degrades in accuracy. As conversations grow longer, your AI "forgets" earlier details, makes mistakes, and contradicts itself.
 
 **Real-world impact:**
 - ❌ Research agent loses track of its plan after 10 web searches
@@ -129,7 +129,7 @@ All agent notes are stored in `knowledge/scratchpad.json`:
 ```
 
 ### Recitation Effect
-When an agent reads from the scratchpad, that information moves to the **end** of the context window, improving model attention—a phenomenon discovered by Manus in their agent research.
+Re-writing information to the scratchpad effectively pushes it to the **end** of the context window in subsequent reads, improving model attention—a phenomenon discovered by Manus in their agent research.
 
 ## 📁 Project Structure
 
