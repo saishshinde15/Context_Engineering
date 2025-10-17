@@ -1,0 +1,32 @@
+[project]
+name = "context_offloading"
+version = "0.1.0"
+description = "Context Offloading using CrewAI - Demonstrating persistent scratchpad for context management"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai>=0.130.0,<1.0.0",
+    "crewai-tools>=0.17.0",
+    "langchain-google-genai>=2.0.0",
+    "tavily-python>=0.7.12",
+]
+
+[project.scripts]
+context_offloading = "context_offloading.main:run"
+run_crew = "context_offloading.main:run"
+train = "context_offloading.main:train"
+replay = "context_offloading.main:replay"
+test = "context_offloading.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
+
+[tool.uv]
+# Allow using manylinux wheels on macOS for pylance compatibility
+override-dependencies = [
+    "pylance==0.17.0"  # Use older version that may have better compatibility
+]

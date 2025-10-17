@@ -1,0 +1,35 @@
+USER PROFILE
+============
+Name: John Doe
+Role: AI Engineer
+Location: San Francisco, California
+Primary Interest: AI Agents and LLM Systems
+
+RESEARCH PREFERENCES
+====================
+
+Report Requirements:
+- Focus on recent developments (2024-2025)
+- Include technical specifications and performance metrics
+- Compare competitive landscape across multiple dimensions
+- Highlight architectural innovations and breakthroughs
+- Provide actionable insights for AI engineers
+- Use clear, structured markdown formatting
+
+Research Depth:
+- Comprehensive coverage of main topic with 4-5 key competitors
+- Include 3-5 key competitors or alternatives
+- Recent news and developments (last 12 months)
+- Technical specifications and architectures
+- Real-world applications and case studies
+- Market positioning and pricing analysis
+
+Output Style:
+- Professional, analytical tone suitable for technical audiences
+- Bullet points for key facts
+- Detailed paragraphs for analysis
+- Clear section headings and hierarchy
+- Executive summary at the beginning
+- Technical depth appropriate for AI engineers
+
+TOPIC: Comprehensive analysis of the AI chip market: Compare NVIDIA, AMD, Intel, and emerging players like Groq and Cerebras in terms of architecture, performance, power efficiency, market positioning, recent developments (2024-2025), and future roadmap

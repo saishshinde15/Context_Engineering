@@ -1,0 +1,83 @@
+planning_task:
+  description: >
+    Your mission is to create a comprehensive research plan for: {topic}
+    
+    Follow this workflow:
+    1. FIRST: Read user preferences using the read_user_preferences tool to understand requirements
+    2. SECOND: Check the scratchpad using scratchpad_read tool to see if there's any existing relevant information
+    3. THIRD: Create a detailed research plan that includes:
+       - Key questions to answer
+       - Information sources to consult
+       - Specific aspects to investigate
+       - Success criteria for the research
+    4. FOURTH: Save the research plan to scratchpad using scratchpad_write tool under category 'research_plan'
+    
+    Current year: {current_year}
+  expected_output: >
+    A structured research plan saved to the scratchpad that includes objectives, 
+    methodology, key questions, and success criteria. Confirmation that the plan 
+    has been saved to the scratchpad.
+  agent: research_planner
+
+research_task:
+  description: >
+    Your mission is to gather comprehensive information following the research plan.
+    
+    Follow this workflow:
+    1. FIRST: Read the research plan from scratchpad using scratchpad_read tool (category: 'research_plan')
+    2. SECOND: Conduct web searches using the tavily_search_results_json tool to address each aspect of the plan
+    3. THIRD: After each search, write your findings to the scratchpad using scratchpad_write tool (category: 'findings')
+    4. FOURTH: Continue iterating - read scratchpad, search, update scratchpad - until all aspects of the plan are covered
+    5. FIFTH: Write a final summary of all findings to scratchpad (category: 'summary')
+    
+    Research topic: {topic}
+    Current year: {current_year}
+  expected_output: >
+    Comprehensive research findings saved to the scratchpad under 'findings' category,
+    with a final summary in the 'summary' category. All findings should be well-organized
+    and address the research plan objectives.
+  agent: researcher
+
+synthesis_task:
+  description: >
+    Your mission is to create a comprehensive, professionally-formatted report by synthesizing all information from the scratchpad.
+    
+    Follow this workflow:
+    1. FIRST: Read ALL notes from scratchpad using scratchpad_read tool with reasoning="To retrieve all research data for comprehensive report synthesis" (no specific category = read all)
+    2. SECOND: Review the research plan, findings, summary, and user preferences
+    3. THIRD: Synthesize everything into a well-structured, comprehensive report with the following structure:
+    
+    REPORT STRUCTURE (MANDATORY):
+    - Title: # [Descriptive Title Based on Topic]
+    - Executive Summary: Brief overview of key findings and insights
+    - Main Body Sections: 
+      * Organize by major themes from research
+      * Each section with clear headings (## for main sections, ### for subsections)
+      * Include bullet points, tables, or lists where appropriate
+      * Provide detailed analysis with supporting data
+    - Key Metrics/Comparison: Use tables or structured comparisons where relevant
+    - Recommendations: Actionable insights for the target audience
+    - Conclusion: Summary of main takeaways
+    - Appendix (if applicable): Supporting data or references
+    
+    4. FOURTH: Ensure the report:
+       - Addresses the original question: {topic}
+       - Incorporates ALL relevant findings from the scratchpad
+       - Follows user preferences for technical depth and audience
+       - Is professionally formatted with proper markdown headers, tables, and lists
+       - Provides actionable insights and recommendations
+       - Uses emojis sparingly for visual appeal (e.g., ✅, ❌, 🎯, ⭐)
+       - Includes comparison tables where appropriate
+       - Maintains technical accuracy while being accessible
+    
+    Current year: {current_year}
+  expected_output: >
+    A comprehensive, professionally-formatted markdown report (WITHOUT code fences ```markdown) that includes:
+    - Clear title and executive summary
+    - Well-structured main sections with headers
+    - Detailed analysis incorporating all scratchpad findings
+    - Comparison tables or matrices where relevant
+    - Actionable recommendations section
+    - Professional conclusion
+    The report must be complete, thorough, and ready for immediate use by technical audiences.
+  agent: synthesis_agent
