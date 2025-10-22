@@ -1,0 +1,56 @@
+retrieval_task:
+  description: >
+    Use the RAG retrieval tool to search for information about: {query}
+    
+    The query is: {query}
+    
+    Retrieve relevant content from Lilian Weng's blog posts that addresses this question.
+    Return the raw retrieved content without any filtering or processing.
+  expected_output: >
+    Raw retrieved content from the blog posts that may contain the answer to the query.
+    This content should be comprehensive but may contain some irrelevant information.
+  agent: retrieval_agent
+
+pruning_task:
+  description: >
+    Take the retrieved content from the previous task and use the context pruning tool to filter it.
+    
+    Original user query: {query}
+    
+    Remove all irrelevant information and keep only the content that directly addresses the user's question.
+    Focus on preserving:
+    - Key facts and definitions
+    - Specific examples and case studies
+    - Data points and statistics
+    - Direct answers to the question
+    
+    Remove:
+    - Tangential discussions
+    - Unrelated background information
+    - Redundant explanations
+  expected_output: >
+    Pruned content that contains only information relevant to answering: {query}
+    The content should be significantly more focused and concise than the original retrieval.
+  agent: pruning_agent
+  context:
+    - retrieval_task
+
+synthesis_task:
+  description: >
+    Based on the pruned context from the previous task, synthesize a comprehensive answer to the query: {query}
+    
+    Your answer should:
+    1. Directly address the user's question
+    2. Be well-structured with clear sections
+    3. Include specific examples and data from the pruned content
+    4. Be accurate and fact-based
+    5. Be concise yet thorough
+    
+    Format your response in markdown with appropriate headers, bullet points, and emphasis.
+  expected_output: >
+    A well-structured, comprehensive answer to the query formatted in markdown.
+    The answer should demonstrate the effectiveness of context pruning by being focused,
+    relevant, and free of tangential information.
+  agent: response_synthesizer
+  context:
+    - pruning_task
