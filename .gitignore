@@ -1,2 +1,6 @@
 .github/instructions/kluster-code-verify.instructions.md
 .kluster
+tools_context_engineering/.env
+*.env
+__pycache__/
+venv/
